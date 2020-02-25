@@ -72,6 +72,8 @@ function draw() {
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+    ctx.canvas.width = $(window).width();
+
     root = getTreeFromString($("#input").val());
 
     parseInputToPython();

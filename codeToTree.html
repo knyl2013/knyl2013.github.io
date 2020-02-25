@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Binary Tree Visualizer</title>
+    <link rel="stylesheet" type="text/css" href="plugin/codemirror/lib/codemirror.css">
+    <link rel="stylesheet" type="text/css" href="plugin/codemirror/theme/3024-night.css">
+    <script src="plugin/codemirror/lib/codemirror.js"></script>
+    <script src="plugin/codemirror/mode/javascript/javascript.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="script/codeToTree.js"></script>
+    <script src="script/Range.js"></script>
+    <script src="script/TreeNode.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+</head>
+<body style="background-color: #012548; color: white" onload="setup()">
+    <ul>
+        <li><a href="index.html">Text-To-Tree</a></li>
+        <li><a class="active" href="codeToTree.html">Code-To-Tree</a></li>
+    </ul>
+
+    <textarea class="codemirror-textarea"></textarea>
+
+    <div style="text-align: right;">
+        <canvas id="canvas"
+                width="600"
+                height="600"
+                style="background-color:white; border:1px solid #000000;"></canvas>
+    </div>
+</body>
+</html>
