@@ -32,74 +32,74 @@
     </div>
 
     <div id="Javascript" class="tabcontent">
-        <pre class="prettyprint">
+        <pre class="prettyprint" style="padding-left: 120px;">
             <code>
-                /*
-                    class TreeNode {
-                        constructor(data) {
-                            this.left = null;
-                            this.right = null;
-                            this.data = data;
-                        }
-                    }
-                */
+/*
+    class TreeNode {
+        constructor(data) {
+            this.left = null;
+            this.right = null;
+            this.data = data;
+        }
+    }
+*/
 
-                function getTree() {
-                    let labels = [<span id="jsLabels"></span>];
-                    let nodes = [];
+function getTree() {
+    let labels = [<span id="jsLabels"></span>];
+    let nodes = [];
 
-                    for (let i = 0; i < labels.length; i++) {
-                        if (labels[i] === null)
-                            nodes.push(null);
-                        else
-                            nodes.push(new TreeNode(labels[i]));
-                    }
+    for (let i = 0; i < labels.length; i++) {
+        if (labels[i] === null)
+            nodes.push(null);
+        else
+            nodes.push(new TreeNode(labels[i]));
+    }
 
-                    let children = nodes.slice().reverse();
+    let children = nodes.slice().reverse();
 
-                    let res = children.pop();
+    let res = children.pop();
 
-                    for (let i = 0; i < nodes.length; i++) {
-                        if (nodes[i] != null) {
-                            if (nodes.length > 0)
-                                nodes[i].left = children.pop();
-                            if (nodes.length > 0)
-                                nodes[i].right = children.pop();
-                        }
-                    }
+    for (let i = 0; i < nodes.length; i++) {
+        if (nodes[i] != null) {
+            if (nodes.length > 0)
+                nodes[i].left = children.pop();
+            if (nodes.length > 0)
+                nodes[i].right = children.pop();
+        }
+    }
 
-                    return res;
-                }
+    return res;
+}
             </code>
         </pre>
     </div>
 
     <div id="Python" class="tabcontent">
-        <pre class="prettyprint">
+        <pre class="prettyprint" style="padding-left: 120px;">
             <code>
-                """
-                class TreeNode:
-                    def __init__(self, x):
-                        self.val = x
-                        self.left = None
-                        self.right = None
-                """
+"""
+class TreeNode:
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+"""
 
-                  def getTree():
-                    labels = [<span id="pythonLabels"></span>]
-                    nodes = []
-                    for label in labels:
-                        if label != None:
-                            nodes.append(TreeNode(label))
-                    clone = nodes[::].reverse()
-                    root = clone.pop()
-                    for n in nodes:
-                        if n != None:
-                            if len(clone):
-                                n.left = clone.pop()
-                            if len(clone):
-                                n.right = clone.pop()
-                    return root
+def getTree():
+    labels = [<span id="pythonLabels"></span>]
+    nodes = []
+    for label in labels:
+        if label != None:
+            nodes.append(TreeNode(label))
+    clone = nodes[::].reverse()
+    root = clone.pop()
+    for n in nodes:
+        if n != None:
+            if len(clone):
+                n.left = clone.pop()
+            if len(clone):
+                n.right = clone.pop()
+return root
             </code>
         </pre>
     </div>
