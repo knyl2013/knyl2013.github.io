@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Binary Tree Visualizer</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="script/script.js"></script>
+    <script src="script/Range.js"></script>
+    <script src="script/TreeNode.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+</head>
+<body style="background-color: #012548; color: white" onload="setup()">
+
+    <textarea id="input" style="width: 100%; height: 35px; resize: none; font-size: 25px;"></textarea>
+    <br><br>
+    <div style="text-align: center;">
+        <canvas id="canvas"
+                width="600"
+                height="600"
+                style="background-color:white; border:1px solid #000000;"></canvas>
+    </div>
+
+
+    <h2>Get the Tree in Code</h2>
+    <p>Select the language of your tree</p>
+
+    <div class="tab">
+        <button id="jsBtn" class="tablinks" onclick="openCode(event, 'Javascript')">Javascript</button>
+        <button id="pyBtn" class="tablinks" onclick="openCode(event, 'Python')">Python</button>
+    </div>
+
+    <div id="Javascript" class="tabcontent">
+        <pre class="prettyprint">
+            <code>
+                /*
+                    class TreeNode {
+                        constructor(data) {
+                            this.left = null;
+                            this.right = null;
+                            this.data = data;
+                        }
+                    }
+                */
+
+                function getTree() {
+                    let labels = [<span id="jsLabels"></span>];
+                    let nodes = [];
+
+                    for (let i = 0; i < labels.length; i++) {
+                        if (labels[i] === null)
+                            nodes.push(null);
+                        else
+                            nodes.push(new TreeNode(labels[i]));
+                    }
+
+                    let children = nodes.slice().reverse();
+
+                    let res = children.pop();
+
+                    for (let i = 0; i < nodes.length; i++) {
+                        if (nodes[i] != null) {
+                            if (nodes.length > 0)
+                                nodes[i].left = children.pop();
+                            if (nodes.length > 0)
+                                nodes[i].right = children.pop();
+                        }
+                    }
+
+                    return res;
+                }
+            </code>
+        </pre>
+    </div>
+
+    <div id="Python" class="tabcontent">
+        <pre class="prettyprint">
+            <code>
+                """
+                class TreeNode:
+                    def __init__(self, x):
+                        self.val = x
+                        self.left = None
+                        self.right = None
+                """
+
+                  def getTree():
+                    labels = [<span id="pythonLabels"></span>]
+                    nodes = []
+                    for label in labels:
+                        if label != None:
+                            nodes.append(TreeNode(label))
+                    clone = nodes[::].reverse()
+                    root = clone.pop()
+                    for n in nodes:
+                        if n != None:
+                            if len(clone):
+                                n.left = clone.pop()
+                            if len(clone):
+                                n.right = clone.pop()
+                    return root
+            </code>
+        </pre>
+    </div>
+</body>
+</html>
