@@ -12,13 +12,24 @@
     <script src="script/Range.js"></script>
     <script src="script/TreeNode.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css">
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </head>
 <body style="background-color: #012548; color: white" onload="setup()">
-    <ul>
-        <li><a href="index.html">Text-To-Tree</a></li>
-        <li><a class="active" href="codeToTree.html">Code-To-Tree</a></li>
-    </ul>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="index.html">Text-To-Tree</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="codeToTree.html">Code-To-Tree</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="bst.html">BST</a>
+            </li>
+        </ul>
+    </nav>
+
 
     <textarea class="codemirror-textarea"></textarea>
 
@@ -28,5 +39,13 @@
                 height="600"
                 style="background-color:white; border:1px solid #000000;"></canvas>
     </div>
+
+    <footer id="sticky-footer" class="py-4 bg-dark text-white-50">
+        <div class="container text-right">
+            <a href="https://github.com/knyl2013/Javascript-Binary-Tree-Visualizer"><small><img src="img/github.png" style="width: 40px; height: 40px;"/></small></a>
+
+        </div>
+        </div>
+    </footer>
 </body>
 </html>
