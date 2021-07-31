@@ -35,19 +35,23 @@ function draw() {
     }, 50);
 }
 
-function rand(size) {
-    let inputObj = $("#input");
-
+function rand(size, $inp, $btn) {
     if (size === 1) {
-        inputObj.val(inputObj.val() + Math.floor(Math.random() * 100));
+        $inp.val($inp.val() + Math.floor(Math.random() * 100));
+        $btn.removeAttr("disabled");
+        $inp.removeAttr("disabled");
     }
     else if (size > 1) {
-        inputObj.val(inputObj.val() + Math.floor(Math.random() * 100) + ",");
-        setTimeout(function() {rand(size-1)}, 800);
+        $inp.val($inp.val() + Math.floor(Math.random() * 100) + ",");
+        setTimeout(function() {rand(size-1, $inp, $btn)}, 800);
     }
 }
 
 function randomBST() {
-    $("#input").val("");
-    rand(7);
+    $inp = $("#input");
+    $btn = $("#randomBtn");
+    $inp.attr("disabled", true);
+    $btn.attr("disabled", true);
+    $inp.val("");
+    rand(7, $inp, $btn);
 }

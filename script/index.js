@@ -8,6 +8,12 @@ $( document ).ready(function(){
     $("#input").val("1,2,3,null,4");
 
     $("#input").focus();
+
+    var input = $("#input")[0];
+
+    input.addEventListener('input', draw);
+
+    draw();
 });
 
 function parseInputToJavascript() {
@@ -81,7 +87,4 @@ function draw() {
     parseInputToJavascript();
 
     root.draw(ctx, new Range(0, canvas.width), 40);
-
-    setTimeout(function(){ draw(); }, 10);
-
 }
