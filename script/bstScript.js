@@ -1,5 +1,9 @@
 $(document).ready(function(){
     $("#input").val("1,2,3");
+
+    var input = $("#input")[0];
+
+    input.addEventListener('input', draw);
 });
 
 function setup() {
@@ -29,10 +33,6 @@ function draw() {
         if (bst.root != null)
             bst.root.draw(ctx, new Range(0, canvas.width), 40);
     }
-
-    setTimeout(function () {
-        draw();
-    }, 50);
 }
 
 function rand(size, $inp, $btn) {
@@ -45,6 +45,7 @@ function rand(size, $inp, $btn) {
         $inp.val($inp.val() + Math.floor(Math.random() * 100) + ",");
         setTimeout(function() {rand(size-1, $inp, $btn)}, 800);
     }
+    draw();
 }
 
 function randomBST() {
