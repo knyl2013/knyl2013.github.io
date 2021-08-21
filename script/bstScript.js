@@ -1,4 +1,4 @@
-var $inp, $btn, $sizeInp, root, visibleWidth, visibleHeight, zoomFunc;
+var $inp, $btn, $sizeInp, root, scale, zoomFunc;
 $(document).ready(function(){
     $inp = $("#input");
     $btn = $("#randomBtn");
@@ -17,7 +17,6 @@ function setup() {
 }
 
 function callDraw() {
-    var canvas = document.getElementById("canvas");
     scaleBefore = scale;
     scale = 1;
     draw();

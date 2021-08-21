@@ -1,3 +1,4 @@
+var scale, zoomFunc;
 $(document).ready(function(){
 	var str = `"nodes": [
 {"id": "1", "left": "2", "right": "3", "value": 1},
@@ -7,7 +8,7 @@ $(document).ready(function(){
 "root": "1"`;
     $("#input").val(str);
     var input = $("#input")[0];
-    input.addEventListener('input', draw);
+    input.addEventListener('input', callDraw);
     draw();
 });
 
@@ -32,6 +33,22 @@ function getTreeFromString(str) {
 		}
 	}
 	return root;
+}
+
+function callDraw() {
+    scaleBefore = scale;
+    scale = 1;
+    draw();
+    if (scaleBefore > scale) {
+        while (scaleBefore > scale) {
+            zoomFunc(1);
+        }
+    }
+    else if (scaleBefore < scale) {
+        while (scaleBefore < scale) {
+            zoomFunc(-1);
+        }   
+    }
 }
 
 function setup() {

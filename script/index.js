@@ -1,4 +1,5 @@
-$( document ).ready(function(){
+var scale, zoomFunc;
+$(document).ready(function(){
     $('#canvas').width = $('window').width();
 
     openCode(null, "Javascript");
@@ -11,7 +12,7 @@ $( document ).ready(function(){
 
     var input = $("#input")[0];
 
-    input.addEventListener('input', draw);
+    input.addEventListener('input', callDraw);
 
     draw();
 });
@@ -65,6 +66,22 @@ function getTreeFromString(str) {
     }
 
     return res;
+}
+
+function callDraw() {
+    scaleBefore = scale;
+    scale = 1;
+    draw();
+    if (scaleBefore > scale) {
+        while (scaleBefore > scale) {
+            zoomFunc(1);
+        }
+    }
+    else if (scaleBefore < scale) {
+        while (scaleBefore < scale) {
+            zoomFunc(-1);
+        }   
+    }
 }
 
 function setup() {
