@@ -14,6 +14,7 @@ $(document).ready(function(){
 
 function getTreeFromString(str) {
 	var obj = JSON.parse("{" + str.replaceAll("\n","").replaceAll("\t","").replaceAll(" ","") + "}");
+	if (obj.nodes == null) return;
 	var n = obj.nodes.length;
 	var dict = {};
 	var root = null;

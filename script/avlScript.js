@@ -1,8 +1,10 @@
-var $inp, $btn, $sizeInp;
+var $inp, $btn, $sizeInp, root, $largerBtn, $smallerBtn;
 $(document).ready(function(){
     $inp = $("#input");
     $btn = $("#randomBtn");
     $sizeInp = $("#size");
+    $largerBtn = $("#largerBtn");
+    $smallerBtn = $("#smallerBtn");
 
     $inp.val("1,2,3");
     $sizeInp.val("3");
@@ -36,6 +38,8 @@ function draw() {
 
         ctx.canvas.width = $(window).width();
 
+        root = tree.root;
+
         if (tree.root != null)
             tree.root.draw(ctx, new Range(0, canvas.width), 40);
     }
@@ -48,6 +52,11 @@ function rand(size, $inp, $btn) {
         $btn.removeAttr("disabled");
         $inp.removeAttr("disabled");
         $sizeInp.removeAttr("disabled");
+        if ($largerBtn[0] != undefined) {
+            $largerBtn.removeAttr("disabled");
+            $smallerBtn.removeAttr("disabled");
+        }
+
     }
     else if (size > 1) {
         $inp.val($inp.val() + Math.floor(Math.random() * 100) + ",");
@@ -61,6 +70,10 @@ function randomAVL() {
     $inp.attr("disabled", true);
     $btn.attr("disabled", true);
     $sizeInp.attr("disabled", true);
+    if ($largerBtn[0] != undefined) {
+        $largerBtn.attr("disabled", true);
+        $smallerBtn.attr("disabled", true);
+    }
     $inp.val("");
     rand($sizeInp.val(), $inp, $btn);
 }

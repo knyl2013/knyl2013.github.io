@@ -1,4 +1,4 @@
-var $inp, $btn, $sizeInp;
+var $inp, $btn, $sizeInp, root;
 $(document).ready(function(){
     $inp = $("#input");
     $btn = $("#randomBtn");
@@ -26,7 +26,7 @@ function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     if (nums.length > 0) {
-        let bst = new BST();
+        bst = new BST();
 
         for (let i = 0; i < nums.length; i++) {
             let val = parseInt(nums[i]);
@@ -36,8 +36,12 @@ function draw() {
 
         ctx.canvas.width = $(window).width();
 
-        if (bst.root != null)
+        root = bst.root;
+
+        if (bst.root != null) {
             bst.root.draw(ctx, new Range(0, canvas.width), 40);
+        }
+
     }
 
 }
