@@ -1,9 +1,13 @@
+var $inp, $btn, $sizeInp;
 $(document).ready(function(){
-    $("#input").val("1,2,3");
+    $inp = $("#input");
+    $btn = $("#randomBtn");
+    $sizeInp = $("#size");
 
-    var input = $("#input")[0];
+    $inp.val("1,2,3");
+    $sizeInp.val("3");
 
-    input.addEventListener('input', draw);
+    $inp[0].addEventListener('input', draw);
 
     draw();
 });
@@ -40,21 +44,23 @@ function draw() {
 function rand(size, $inp, $btn) {
     if (size === 1) {
         $inp.val($inp.val() + Math.floor(Math.random() * 100));
+        draw();
         $btn.removeAttr("disabled");
         $inp.removeAttr("disabled");
+        $sizeInp.removeAttr("disabled");
     }
     else if (size > 1) {
         $inp.val($inp.val() + Math.floor(Math.random() * 100) + ",");
+        draw();
         setTimeout(function() {rand(size-1, $inp, $btn)}, 800);
     }
-    draw();
+    
 }
 
 function randomAVL() {
-    $inp = $("#input");
-    $btn = $("#randomBtn");
     $inp.attr("disabled", true);
     $btn.attr("disabled", true);
+    $sizeInp.attr("disabled", true);
     $inp.val("");
-    rand(7, $inp, $btn);
+    rand($sizeInp.val(), $inp, $btn);
 }
