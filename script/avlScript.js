@@ -46,7 +46,7 @@ function draw() {
 }
 
 function rand(size, $inp, $btn) {
-    if (size === 1) {
+    if (size == 1) {
         $inp.val($inp.val() + Math.floor(Math.random() * 100));
         draw();
         $btn.removeAttr("disabled");
