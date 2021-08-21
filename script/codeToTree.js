@@ -8,6 +8,7 @@ $(document).ready(function(){
         mode: "javascript",
         theme: "3024-night"
     });
+
     editor.setValue("/*\n" +
         "    class TreeNode {\n" +
         "        constructor(data) {\n" +
@@ -18,7 +19,6 @@ $(document).ready(function(){
         "    }\n" +
         "*/\n" +
         "\n" +
-        "// Change the code to display a different tree!\n" + 
         "function drawTree() {\n" +
         "\troot = new TreeNode(0);\n" +
         "  \troot.left = new TreeNode(1);\n" +
@@ -26,14 +26,6 @@ $(document).ready(function(){
         "  \treturn root;\n" +
         "}");
 
-
-    code.addEventListener('input', draw);
-
-    editor.on("change",function(cm,change){
-        draw();
-    });
-
-    draw();
 });
 
 function setup() {
@@ -67,6 +59,8 @@ function draw() {
         root.draw(ctx, new Range(0, canvas.width), 40);
     }
 
-    
+    setTimeout(function () {
+        draw();
+    }, 50);
 }
 

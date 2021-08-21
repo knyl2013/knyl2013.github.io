@@ -1,8 +1,10 @@
 class TreeNode {
-    constructor(label) {
+    constructor(label, height) {
         this.left = null;
         this.right = null;
         this.label = label;
+        if (height != undefined)
+            this.height = height;
     }
 
     draw(ctx, xRange, y, parentX, parentY) {
@@ -25,11 +27,19 @@ class TreeNode {
         // Draw a the tree node and the label
         ctx.beginPath();
         ctx.arc(x, y, 22, 0, 2 * Math.PI);
-        ctx.fillStyle = "#012548";
+        ctx.fillStyle = this.height == undefined ? "#012548" : "#8B0000";
+        //ctx.strokeStyle = this.height == undefined ? "#000000" : "#FFFFFF";
         ctx.fill();
         ctx.stroke();
         ctx.fillStyle = "#FFFFFF";
-        ctx.fillText(this.label, x-3, y+4);
+        var showHeight = false;
+        if (this.height != undefined && showHeight) {
+            ctx.fillText(this.label + "," + this.height, x-3, y+4);
+        }
+        else {
+            ctx.fillText(this.label, x-3, y+4);
+        }
+        
         ctx.fillStyle = "#000000";
     }
 }
