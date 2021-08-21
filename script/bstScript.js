@@ -1,4 +1,4 @@
-var $inp, $btn, $sizeInp, root, scale, zoomFunc;
+var $inp, $btn, $sizeInp, root, scale, zoomFunc, shouldZoomOut;
 $(document).ready(function(){
     $inp = $("#input");
     $btn = $("#randomBtn");
@@ -29,6 +29,9 @@ function callDraw() {
         while (scaleBefore < scale) {
             zoomFunc(-1);
         }   
+    }
+    if (shouldZoomOut) {
+        zoomFunc(-1);
     }
 }
 

@@ -1,3 +1,4 @@
+var visibleHeight, shouldZoomOut, zoomFunc;
 class TreeNode {
     constructor(label, height) {
         this.left = null;
@@ -9,20 +10,26 @@ class TreeNode {
 
     draw(ctx, xRange, y, parentX, parentY) {
         let x = xRange.getMid();
+        let isRoot = parentX == null && parentY == null
 
         // Draw a line from current node to parent
-        if (parentX != null && parentY != null) {
+        if (!isRoot) {
             ctx.beginPath();
             ctx.moveTo(x, y);
             ctx.lineTo(parentX, parentY);
             ctx.stroke();
         }
-
+        else {
+            shouldZoomOut = false;
+        }
+        
         // Draw children
         if (this.left != null)
             this.left.draw(ctx, new Range(xRange.left, x), y + 100, x, y);
         if (this.right != null)
             this.right.draw(ctx, new Range(x, xRange.right), y + 100, x, y);
+
+        if (y >= visibleHeight) shouldZoomOut = true;
 
         // Draw a the tree node and the label
         ctx.beginPath();
@@ -39,7 +46,7 @@ class TreeNode {
         else {
             ctx.fillText(this.label, x-3, y+4);
         }
-        
+
         ctx.fillStyle = "#000000";
     }
 }
