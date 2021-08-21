@@ -7,4 +7,8 @@ class Range {
     getMid() {
         return (this.left + this.right) / 2
     }
+
+    getLength() {
+    	return (this.right - this.left);
+    }
 }

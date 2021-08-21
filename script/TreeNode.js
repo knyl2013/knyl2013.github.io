@@ -30,6 +30,7 @@ class TreeNode {
             this.right.draw(ctx, new Range(x, xRange.right), y + 100, x, y);
 
         if (y >= visibleHeight) shouldZoomOut = true;
+        if (xRange.getLength() < 5) shouldZoomOut = true;
 
         // Draw a the tree node and the label
         ctx.beginPath();
