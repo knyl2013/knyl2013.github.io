@@ -1,4 +1,4 @@
-var $inp, $btn, $sizeInp, root;
+var $inp, $btn, $sizeInp, root, visibleWidth, visibleHeight, zoomFunc;
 $(document).ready(function(){
     $inp = $("#input");
     $btn = $("#randomBtn");
@@ -7,13 +7,30 @@ $(document).ready(function(){
     $inp.val("1,2,3");
     $sizeInp.val("3");
 
-    $inp[0].addEventListener('input', draw);
+    $inp[0].addEventListener('input', callDraw);
 
     draw();
 });
 
 function setup() {
     draw();
+}
+
+function callDraw() {
+    var canvas = document.getElementById("canvas");
+    scaleBefore = scale;
+    scale = 1;
+    draw();
+    if (scaleBefore > scale) {
+        while (scaleBefore > scale) {
+            zoomFunc(1);
+        }
+    }
+    else if (scaleBefore < scale) {
+        while (scaleBefore < scale) {
+            zoomFunc(-1);
+        }   
+    }
 }
 
 function draw() {
@@ -49,15 +66,14 @@ function draw() {
 function rand(size, $inp, $btn) {
     if (size == 1) {
         $inp.val($inp.val() + Math.floor(Math.random() * 100));
-        console.log('aaaa');
-        draw();
+        callDraw();
         $btn.removeAttr("disabled");
         $inp.removeAttr("disabled");
         $sizeInp.removeAttr("disabled");
     }
     else if (size > 1) {
         $inp.val($inp.val() + Math.floor(Math.random() * 100) + ",");
-        draw();
+        callDraw();
         setTimeout(function() {rand(size-1, $inp, $btn)}, 800);
     }
 }

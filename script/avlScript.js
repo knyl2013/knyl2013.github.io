@@ -1,21 +1,36 @@
-var $inp, $btn, $sizeInp, root, $largerBtn, $smallerBtn;
+var $inp, $btn, $sizeInp, root, zoomFunc;
 $(document).ready(function(){
     $inp = $("#input");
     $btn = $("#randomBtn");
     $sizeInp = $("#size");
-    $largerBtn = $("#largerBtn");
-    $smallerBtn = $("#smallerBtn");
 
     $inp.val("1,2,3");
     $sizeInp.val("3");
 
-    $inp[0].addEventListener('input', draw);
+    $inp[0].addEventListener('input', callDraw);
 
     draw();
 });
 
 function setup() {
     draw();
+}
+
+function callDraw() {
+    var canvas = document.getElementById("canvas");
+    scaleBefore = scale;
+    scale = 1;
+    draw();
+    if (scaleBefore > scale) {
+        while (scaleBefore > scale) {
+            zoomFunc(1);
+        }
+    }
+    else if (scaleBefore < scale) {
+        while (scaleBefore < scale) {
+            zoomFunc(-1);
+        }   
+    }
 }
 
 function draw() {
@@ -48,19 +63,14 @@ function draw() {
 function rand(size, $inp, $btn) {
     if (size == 1) {
         $inp.val($inp.val() + Math.floor(Math.random() * 100));
-        draw();
+        callDraw();
         $btn.removeAttr("disabled");
         $inp.removeAttr("disabled");
         $sizeInp.removeAttr("disabled");
-        if ($largerBtn[0] != undefined) {
-            $largerBtn.removeAttr("disabled");
-            $smallerBtn.removeAttr("disabled");
-        }
-
     }
     else if (size > 1) {
         $inp.val($inp.val() + Math.floor(Math.random() * 100) + ",");
-        draw();
+        callDraw();
         setTimeout(function() {rand(size-1, $inp, $btn)}, 800);
     }
     
@@ -70,10 +80,6 @@ function randomAVL() {
     $inp.attr("disabled", true);
     $btn.attr("disabled", true);
     $sizeInp.attr("disabled", true);
-    if ($largerBtn[0] != undefined) {
-        $largerBtn.attr("disabled", true);
-        $smallerBtn.attr("disabled", true);
-    }
     $inp.val("");
     rand($sizeInp.val(), $inp, $btn);
 }

@@ -1,4 +1,4 @@
-var zoom, visibleWidth, visibleHeight;
+var zoomFunc, visibleWidth, visibleHeight, scale;
 $(document).ready(function(){
     var zoomIntensity = 0.2;
     var canvas = document.getElementById("canvas");
@@ -9,13 +9,9 @@ $(document).ready(function(){
     var smallerBtn = document.getElementById("smallerBtn");
     if (largerBtn == null || smallerBtn == null) return;
 
-    let scale = 1;
-    let originx = 0;
-    let originy = 0;
-
+    scale = 1;
     visibleWidth = width;
     visibleHeight = height;
-
 
     zoomFunc = function (wheel){
         zoom = Math.exp(wheel * zoomIntensity);
@@ -25,7 +21,7 @@ $(document).ready(function(){
         visibleHeight = height / scale;
         if (root != null) {
             canvas.getContext("2d").clearRect(0, 0, 1e6, 1e6);
-            root.draw(context, new Range(0, canvas.width), 40);
+            root.draw(context, new Range(0, visibleWidth), 40);
         }
     }
 
