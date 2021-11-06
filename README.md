@@ -1,8 +1,6 @@
 # Javascript-Binary-Tree-Visualizer
 
-The simulation of Leetcode binary tree visualizer.
-
-For every new value in the input box, a new TreeNode with that value will be added as a leftmost child in the lowest layer of the tree.
+Ths is a Binary tree visualizer.
 
 <img src="https://i.imgur.com/BhcF5Zm.png"/>
 
